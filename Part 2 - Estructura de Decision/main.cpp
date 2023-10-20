@@ -150,8 +150,165 @@ int main(){
 }
 */
 // Ejercicio 9
+/*
 int main(){
-  
-  
+  int nro;
+  cout<<"Ingrese un numero de cinco cifras: "; cin>>nro;
+  if (nro%10 == nro/10000){
+    nro /= 10; // 12021 -> 1202
+    nro -= (nro/1000)*1000; // 1202 - 1000 -> 202
+
+    if (nro%10 == nro/100){
+      cout<<"El numero ingresado es capicua"<<endl;
+    } else {
+      cout<<"El numero ingresado no es capicua"<<endl;
+    }
+
+  } else {
+    cout<<"El numero ingresado no es capicua"<<endl;
+  }
   return 0;
 }
+*/
+// Ejercicio 10
+/*
+int main(){
+  int dia=0, mes, anio;
+  cout<<"Ingrese el mes y el anio en formato de MM AAAA separando cada dato con un espacio (Ej: 07 2004): "; cin>>mes>>anio;
+  if (anio>=10000 || anio<=999){
+    cout<<"El anio ingresado no es valido. Recuerda que debe ser de 4 digitos y positivo."<<endl;
+  } else {
+    switch (mes){
+    case 1:
+      dia = 31;
+      break;
+    case 2:
+      if (anio%4 ==0){
+        dia = 29;
+      } else {
+        dia = 28;
+      } 
+      break;
+    case 3:
+      dia = 31;
+      break;
+    case 4:
+      dia = 30;
+      break;
+    case 5:
+      dia = 31;
+      break;
+    case 6:
+      dia = 30;
+      break;
+    case 7:
+      dia = 31;
+      break;
+    case 8:
+      dia = 31;
+      break;
+    case 9:
+      dia = 30;
+      break;
+    case 10:
+      dia = 31;
+      break;
+    case 11:
+      dia = 30;
+      break;
+    case 12:
+      dia = 31;
+      break;
+    default:
+      cout<<"El mes ingresado no es valido. Recuerde que tiene que estar entre 1 o hasta 12"<<endl;
+      break;
+    }
+  }
+  cout<<"En el mes y anio ingresados, los dias del mes son: "<<dia<<endl;
+  return 0;
+}
+*/
+// Ejercicio 11
+/*
+int main(){
+  int codigo, cantidad;
+  float precio=0;
+  cout<<"Ingrese el codigo del articulo: "; cin>>codigo;
+  cout<<"Ingrese la cantidad que busca llevar de ese articulo: "; cin>>cantidad;
+  switch (codigo){
+    case 1:
+    case 10:
+    case 100:
+      precio = cantidad*10;
+      break;
+    case 2:
+    case 22:
+    case 222:
+      if (cantidad/10 >= 1){
+        precio = (cantidad/10)*65;
+        cantidad %= 10;
+      }
+      precio += cantidad*7;
+      break;
+    case 3:
+    case 33:
+      if (cantidad > 10){
+        precio = cantidad*3;
+        precio -= precio*0.1;
+      } else{
+        precio = cantidad*3;
+      }
+      break;
+    case 4:
+    case 44:
+      precio = cantidad*2;
+      break;
+    default:
+      cout<<"\n Error! El código digitado no es valido.";
+      break;
+  }
+  cout<<"ARTICULO: "<<codigo<<" | CANTIDAD: "<<cantidad<<" | IMPORTE A PAGAR: $"<<precio<<endl;
+  return 0;
+}
+*/
+// Ejercicio 12
+/*
+int main(){
+  char codigo;
+  int importe=0, nro_historia;
+  cout<<"Ingrese el numero de historia clinica: "; cin>>nro_historia;
+  cout<<"Ingrese el codigo de prestamo a realizar: "; cin>>codigo;
+  switch (codigo)
+  {
+    case 'A':
+    case 'a':
+      importe = 200;
+      break;
+    case 'D':
+    case 'd':
+      importe = 400;
+      break;
+    case 'F':
+    case 'f':
+      importe = 600;
+      break;
+    case 'M':
+    case 'm':
+      importe = 1500;
+      break;
+    case 'T':
+    case 't':
+      importe = 150;
+      break;
+    default:
+      cout<<"Error! El codgio de prestamo ingresado no es valido. Recuerde que las opciones son 'A' 'D' 'F' 'M' 'T'."<<endl;
+      break;
+  }
+  cout<<"#############################################"<<endl;
+  cout<<"               NUMERO DE HISTORIA: "<<nro_historia<<endl;
+  cout<<"               CODIGO DE PRESTAMO: "<<codigo<<endl;
+  cout<<"               IMPORTE A PAGAR:    $"<<importe<<endl;
+  cout<<"#############################################"<<endl;
+  return 0;
+}
+*/
