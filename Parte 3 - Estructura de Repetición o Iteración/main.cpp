@@ -669,6 +669,7 @@ int main(){
 */
 
 // Ejercicio 7
+/*
 #include <stdlib.h>
 #include <time.h>
 int main(){
@@ -679,19 +680,16 @@ int main(){
   do{
     for (int i = 1; i <= 5; i++){
       dado = 1 + (rand()%6);
-      cout<<"El dado ahora es: "<<dado<<endl;
       if (i == 1){
         mayor = dado;
-        cout<<"MAYOR ES: "<<mayor<<endl;
       } else if (dado > mayor){
         submayor = mayor;
         mayor = dado;
-        cout<<"MAYOR ES submayor: "<<submayor<<endl;
-        cout<<"MAYOR ES mayor: "<<mayor<<endl;
+      } else if( dado > submayor){
+        submayor = dado;
       }
     }
     puntaje = mayor + submayor;
-    cout<<"El puntaje ahora es: "<<puntaje<<endl;
     if (max_puntaje == 0){
       max_puntaje = puntaje;
     } else if (max_puntaje<puntaje){
@@ -699,8 +697,6 @@ int main(){
     }
     cantidad++;
     prom += puntaje;
-    cout<<"MAX PUNTAJE:"<<max_puntaje<<endl;
-    cout<<"PROMEDIO: "<<prom<<endl;
     do{
       cout<<"\nDesea continuar jugando? S/N: "; cin>>continuar;
       if (continuar != 'N' && continuar != 'n' && continuar != 'S' && continuar != 's'){
@@ -715,3 +711,172 @@ int main(){
   cout<<"Puntaje promedio: "<<prom<<endl;
   return 0;
 }
+*/
+// Ejercicio 8
+/*
+int main(){
+  // Datos a ingresar:
+  char tipo_domicilio, sexo, educacion, edu_cursado;
+  int integrantes=0, edad;
+  string domicilio, nombre, apellido;
+  // Datos a calcular:
+  int cant_edu_prim_completo=0,cant_edu_sec_incompleto=0,cant_personas=0 ,prom_edad=0, prom_mayor_edad=0, mayor_edad=0, cant_familias=0, cant_mujer_edu_terc_completo=0, mayor_integrant_familia=0;
+  float analfabetas=0, mujeres_edu_terc_completo=0;
+  string domic_mayor_integrant="";
+  cout<<"\nHola, bienvenido a la encuesta del gob de CABA"<<endl;
+  do
+  {
+    cout<<"Ingrese la cantidad de integrantes de su familia: "; cin>>integrantes;
+    if (integrantes == 0)
+    {
+      break;
+    }
+    cout<<"Ingrese el domicilio en donde vive: "; cin>>domicilio;
+    cout<<"Indique el tipo de domicilio:\nC: Casa\nD: Departamento\nOPCION:"; cin>>tipo_domicilio;
+    mayor_edad = 0;
+    cant_familias++;
+    cant_personas += integrantes;
+    if (mayor_integrant_familia < integrantes && tipo_domicilio == 'D'){
+      mayor_integrant_familia = integrantes;
+      domic_mayor_integrant = domicilio;
+    }
+    cout<<"\nBien ahora pasemos a datos de su familia."<<endl;
+    for (int i = 1; i <= integrantes; i++)
+    {
+      cout<<"\nDATOS DEL INTEGRANTE NUMERO "<<i<<":"<<endl;
+      cout<<"Ingrese el nombre y apellido separando con un espacio cada dato (Ej: Jorge Cadima):"; cin>>nombre>>apellido;
+      cout<<"Ingrese la edad de esa persona:"; cin>>edad;
+      cout<<"Indique el sexo de esa persona\nF: Femenino\nM: Masculino\nOPCION:"; cin>>sexo;
+      cout<<"Indique el nivel de estudios alcanzados\nP: Primario\nS: Secundario\nT: Terciario\nN: No posee\nOPCION:"; cin>>educacion;
+      prom_edad += edad;
+      if (educacion != 'N'){
+        cout<<"Referente al dato anterior, esa educacion se encuentra:\nC: Completo\nI: Incompleto\nOPCION:"; cin>>edu_cursado;
+      }
+      if (educacion == 'P' && edu_cursado == 'C' || educacion == 'S' || educacion == 'T'){
+        cant_edu_prim_completo++;
+      }
+      if(edad > 10 && educacion=='N'){
+        analfabetas++;
+      }
+      if(mayor_edad < edad){
+        mayor_edad = edad;
+      }
+      if(educacion == 'S' && edu_cursado == 'I'){
+        cant_edu_sec_incompleto++;
+      }
+      if(sexo == 'F' && educacion == 'T' && edu_cursado =='C'){
+        mujeres_edu_terc_completo++;
+      }
+    }
+    prom_mayor_edad += mayor_edad;
+  } while (integrantes != 0);
+  analfabetas = (analfabetas*100)/cant_personas;
+  prom_edad /= cant_personas;
+  prom_mayor_edad /= cant_familias;
+  mujeres_edu_terc_completo = (mujeres_edu_terc_completo*100)/cant_personas;
+  cout<<"\n==========================="<<endl;
+  cout<<"INFORME DE LA ENCUESTA:"<<endl;
+  cout<<"\nPersonas con estudios primarios completos: "<<cant_edu_prim_completo<<endl;
+  cout<<"De las "<<cant_personas<<" porcentaje de personas analfabetas es: "<<analfabetas<<"%"<<endl;
+  cout<<"El domicilio de la familia con mas integrantes en un departamento es: "<<domic_mayor_integrant<<endl;
+  cout<<"La edad promedio de las personas es: "<<prom_edad<<endl;
+  cout<<"La mayor edad promedio de las familias: "<<prom_mayor_edad<<endl;
+  cout<<"Cantidad de personas con el secundario incompleto: "<<cant_edu_sec_incompleto<<endl;
+  cout<<"El porcentaje de las mujeres con educacion terciaria completa es: "<<mujeres_edu_terc_completo<<"%"<<endl;
+  return 0;
+}
+*/
+// Ejercicio 9
+/*
+int main(){
+  char puerto_destino;
+  int peso_contenedor, peso_buque=0, peso_contenedor_pesado=0, puerto_1=0, puerto_2=0, puerto_3=0;
+  string contenedor, contenedor_pesado="";
+  do{
+    cout<<"\nIngrese la identificacion del contenedor (Ej: 'A123'): ";cin>>contenedor;
+    if (contenedor == "0")
+    {
+      break;
+    }
+    cout<<"Ingrese el peso del contenedor en kilogamos: "; cin>>peso_contenedor;
+    do
+    {
+      cout<<"Indique al puerto al cual tiene destino, las opciones validas son '1', '2' o '3' : "; cin>>puerto_destino;
+      if (puerto_destino != '1' && puerto_destino != '2' && puerto_destino != '3')
+      {
+        cout<<"ERROR el puerto ingresado no es valido."<<endl;
+      } 
+    } while (puerto_destino != '1' && puerto_destino != '2' && puerto_destino != '3');
+    peso_buque += peso_contenedor;
+   if (peso_contenedor_pesado < peso_contenedor)
+   {
+    peso_contenedor_pesado = peso_contenedor;
+    contenedor_pesado = contenedor;
+   }
+   switch (puerto_destino)
+   {
+    case '1':
+      puerto_1++;
+      break;
+    case '2':
+      puerto_2++;
+      break;
+    case '3':
+      puerto_3++;
+      break;
+    default:
+      break;
+   }
+  } while (contenedor != "0");
+  cout<<"\nEl peso total del buque es: "<<peso_buque<<endl;
+  cout<<"La identificacion del contenedor mas pesado es: "<<contenedor_pesado<<endl;
+  cout<<"Esta son la cantidad de contenedores que recibira cada puerto:"<<endl;
+  cout<<"Puerto 1: "<<puerto_1<<"\nPuerto 2: "<<puerto_2<<"\nPuerto 3: "<<puerto_3<<endl;
+  return 0;
+}
+*/
+// Ejercicio 10
+/*
+int main(){
+  // Datos a ingresar
+  int cant_vuelos, nro_vuelo, asientos_vuelo, importe;
+  string destino_vuelo, pasaporte, lista_pasajeros="", lista_importes;
+  // Datos a calcular
+  int max_nro_vuelo=0, ganancia_vuelo=0, asientos_libre_vuelo=0, max_ganancia_vuelo=0;
+  cout<<"Ingrese la cantidad de vuelos que se realizaron al exterior: "; cin>>cant_vuelos;
+  for (int i = 1; i <= cant_vuelos; i++)
+  {
+    ganancia_vuelo = 0;
+    lista_pasajeros = "";
+    asientos_libre_vuelo = 0;
+    cout<<"\nINGRESO DE DATOS DEL VUELO "<<i<<":"<<endl;
+    cout<<"\nIngrese el numero del vuelo: "; cin>>nro_vuelo;
+    cout<<"Ingrese el destino del vuelo: "; cin>>destino_vuelo;
+    cout<<"Ingrese la cantidad de asientos del vuelo: "; cin>>asientos_vuelo;
+    cout<<"\nINGRESO DE DATOS DE LOS PASAJEROS DEL VUELO "<<i<<":"<<endl;
+    for (int j = 1; j <= asientos_vuelo; j++)
+    {
+      cout<<"\nIngrese el numero de pasaporte del pasajero "<<j<<":"; cin>>pasaporte;
+      if (pasaporte == "0")
+      {
+        asientos_libre_vuelo = asientos_vuelo - (j-1);
+        break;
+      }
+      cout<<"Indique el monto que este abono por el pasaje en dolares: $"; cin>>importe;
+      ganancia_vuelo += importe;
+      lista_pasajeros += pasaporte + " | $" + to_string(importe) + "\n";
+    }
+    if (max_ganancia_vuelo < ganancia_vuelo)
+    {
+      max_ganancia_vuelo = ganancia_vuelo;
+      max_nro_vuelo = nro_vuelo;
+    }
+    cout<<"\nINFORME DETALLADO DEL VUELO "<<i<<":"<<endl;
+    cout<<"Nro de Vuelo: "<<nro_vuelo<<" | DESTINO: "<<destino_vuelo<<"\nNro de Pasaporte | Importe en usd\n"<<lista_pasajeros<<endl;
+    cout<<"Total recaudado del vuelo: "<<ganancia_vuelo<<endl;
+    cout<<"Cantidad de asientos libres: "<<asientos_libre_vuelo<<endl;
+    cout<<"\nNumero de vuelo que mas recaudo: "<<max_nro_vuelo<<endl;
+  }
+  return 0;
+}
+*/
